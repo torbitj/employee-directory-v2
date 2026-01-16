@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
 
 import employeeRouter from "#api/employees";
 
-app.use('/employees', employeeRouter)
+app.use("/employees", employeeRouter)
 
 app.use((err, req, res, next) => {
   console.log(err)
