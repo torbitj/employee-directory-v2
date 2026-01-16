@@ -1,7 +1,9 @@
 import express from 'express';
-import employees from "#db/employees";
+import employees, { addEmployee } from "#db/employees";
 
 const employeeRouter = express.Router();
+
+employeeRouter.use(express.json())
 
 employeeRouter.get("/", (req, res) => {
   res.send(employees);
@@ -27,5 +29,15 @@ employeeRouter.get("/:id", (req, res) => {
 
   res.send(employee);
 });
+
+employeeRouter.post("/", (req, res, next) => {
+  if (!req.body || !req.body.name) {
+    res.status(400).send("Something went wrong")
+  } else {
+    const newEmployee = addEmployee(req.body.name)
+    res.status(201).send(newEmployee);
+  }
+  
+}) 
 
 export default employeeRouter;

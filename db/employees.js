@@ -13,3 +13,12 @@ const employees = [
 
 /* WARNING: this must remain the default export in order for the tests to work! */
 export default employees;
+
+export const addEmployee = (name) => {
+  const nameId = employees.length + 1;
+  const newEmployee = {}
+  newEmployee.id = nameId;
+  newEmployee.name = name;
+  employees.push(newEmployee);
+  return newEmployee;
+}
